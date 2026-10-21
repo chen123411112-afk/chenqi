@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>音乐馆</title>
+<title>Rosé × LØREN · 音乐馆</title>
 <script>try{var t=localStorage.getItem('theme');if(!t){var h=new Date().getHours();t=(h>=19||h<6)?'dark':'light'}document.documentElement.dataset.theme=t}catch(e){}</script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -356,6 +356,111 @@
     .viz{ display:none; }
     .stage.expanded .viz{ display:block; }
   }
+
+  /* =====================================================
+     Rosé × LØREN 主题
+     ===================================================== */
+  :root{ --bg:#fbf1f4; --ink:#2a1319; --soft:#6b4651; --mute:#b08a96; --line:rgba(122,30,60,.1); --gold:#d9708f; --gold-l:#f6cdd9; --glass:rgba(255,255,255,.72);
+    --ind:#7683b8; --shadow:0 1px 2px rgba(122,30,60,.05),0 12px 28px -12px rgba(122,30,60,.14),0 40px 80px -40px rgba(122,30,60,.2); }
+  html[data-theme="dark"]{ --bg:#150a0e; --ink:#fbeef2; --soft:#e2c4cd; --mute:#9c7983; --line:rgba(255,255,255,.1); --gold:#e58aa6; --gold-l:#f3c4d2; --glass:rgba(48,22,31,.72); --card:#241218; --ind:#8e9bd0; }
+  body{ background:radial-gradient(60% 40% at 15% 0%,#fff 0%,transparent 70%),radial-gradient(55% 45% at 90% 15%,rgba(247,200,214,.6) 0%,transparent 70%),radial-gradient(50% 40% at 6% 92%,rgba(150,162,215,.28) 0%,transparent 70%),radial-gradient(60% 50% at 60% 100%,rgba(255,232,240,.9) 0%,transparent 70%),var(--bg); background-attachment:fixed; }
+  html[data-theme="dark"] body{ background:radial-gradient(55% 45% at 90% 12%,rgba(229,138,166,.2) 0%,transparent 70%),radial-gradient(55% 45% at 6% 95%,rgba(120,134,200,.2) 0%,transparent 70%),var(--bg); background-attachment:fixed; }
+  .marquee .dot{ box-shadow:0 0 0 4px rgba(217,112,143,.18); }
+  .stage{ background:linear-gradient(145deg,rgba(255,247,250,.92),rgba(255,236,242,.6)); }
+  html[data-theme="dark"] .stage{ background:linear-gradient(145deg,rgba(60,28,40,.92),rgba(34,16,23,.78)); }
+  .turntable::before{ background:radial-gradient(circle,#fff 55%,#fbe4ec 100%); }
+  html[data-theme="dark"] .turntable::before{ background:radial-gradient(circle,#2e1620 55%,#1d0e14 100%); }
+  .vinyl{ background:conic-gradient(from 30deg,rgba(255,255,255,0),rgba(255,255,255,.75) 12%,rgba(255,255,255,0) 25%,rgba(255,255,255,0) 50%,rgba(255,255,255,.75) 62%,rgba(255,255,255,0) 75%),repeating-radial-gradient(circle at center,#f9e4ea 0,#f9e4ea 1.5px,#f1cdd7 1.5px,#f1cdd7 3px); }
+  html[data-theme="dark"] .vinyl{ background:conic-gradient(from 30deg,transparent,rgba(255,200,215,.14) 12%,transparent 25%,transparent 50%,rgba(255,200,215,.14) 62%,transparent 75%),repeating-radial-gradient(circle at center,#2a1219 0,#2a1219 1.5px,#1b0b11 1.5px,#1b0b11 3px); }
+  .vinyl[data-artist="loren"]{ background:conic-gradient(from 30deg,rgba(255,255,255,0),rgba(255,255,255,.7) 12%,rgba(255,255,255,0) 25%,rgba(255,255,255,0) 50%,rgba(255,255,255,.7) 62%,rgba(255,255,255,0) 75%),repeating-radial-gradient(circle at center,#e6e9f4 0,#e6e9f4 1.5px,#d3d8ec 1.5px,#d3d8ec 3px); }
+  html[data-theme="dark"] .vinyl[data-artist="loren"]{ background:conic-gradient(from 30deg,transparent,rgba(190,200,240,.14) 12%,transparent 25%,transparent 50%,rgba(190,200,240,.14) 62%,transparent 75%),repeating-radial-gradient(circle at center,#1b1e30 0,#1b1e30 1.5px,#101220 1.5px,#101220 3px); }
+  .label .lb-loren{ display:none; }
+  .vinyl[data-artist="loren"] .label .lb-loren{ display:block; }
+  .vinyl[data-artist="loren"] .label .lb-rose{ display:none; }
+  .ctrl-btn.main,.track.active .track-play{ background:linear-gradient(160deg,#ec93ad,#c85878); color:#fff; box-shadow:0 12px 24px -8px rgba(200,88,120,.55), inset 0 1px 1px rgba(255,255,255,.3); }
+  html[data-theme="dark"] .ctrl-btn.main,html[data-theme="dark"] .track.active .track-play{ background:linear-gradient(160deg,#ffd9e4,#e58aa6); color:#3a0f1d; box-shadow:0 10px 22px -8px rgba(229,138,166,.5), inset 0 1px 1px rgba(255,255,255,.6); }
+  .progress-fill{ background:linear-gradient(90deg,#f4a6bd,var(--gold)); }
+  .track.flash{ animation:none; }
+  .coll:nth-child(1) .cover{ background:linear-gradient(145deg,#ffe9ef,#f6c3d1); }
+  .coll:nth-child(2) .cover{ background:linear-gradient(145deg,#fff0f3,#f2d0d9); }
+  .coll:nth-child(3) .cover,#roseCover{ background:linear-gradient(145deg,#f9b7ca,#e8809e); }
+  .coll:nth-child(4) .cover,#lorenCover{ background:linear-gradient(145deg,#aab4e0,#5a6496); }
+  html[data-theme="dark"] .coll:nth-child(1) .cover{ background:linear-gradient(145deg,#4a2430,#2e141c); }
+  html[data-theme="dark"] .coll:nth-child(2) .cover{ background:linear-gradient(145deg,#43212b,#2a1219); }
+  html[data-theme="dark"] .coll:nth-child(3) .cover{ background:linear-gradient(145deg,#8a3f58,#5a2338); }
+  html[data-theme="dark"] .coll:nth-child(4) .cover{ background:linear-gradient(145deg,#4a5384,#262c4a); }
+  html[data-theme="dark"] .cover::after{ box-shadow:0 0 0 2px #241218; }
+  @media (min-width:680px){ .coll-grid{ grid-template-columns:repeat(4,1fr); } }
+  .cover.has-photo{ background-size:cover !important; background-position:center top; }
+  .cover.has-photo::before,.cover.has-photo::after{ display:none; }
+
+  .hero-title .x{ font-style:italic; font-weight:200; color:var(--mute); margin:0 .12em; }
+  .hero-title .ln{ background:linear-gradient(90deg,#7683b8,#aab4e0); -webkit-background-clip:text; background-clip:text; color:transparent; letter-spacing:.01em; }
+  .rose-avatar{ width:26px; height:26px; border-radius:50%; object-fit:cover; margin-right:8px; vertical-align:middle; box-shadow:0 0 0 2px #fff,0 0 0 3px var(--gold); }
+  .rose-avatar.loren{ box-shadow:0 0 0 2px #fff,0 0 0 3px var(--ind); }
+  .rose-avatar + .rose-avatar{ margin-left:-14px; }
+  .facts-row{ display:flex; flex-wrap:wrap; gap:10px 28px; margin-top:10px; }
+  .rose-facts{ font-size:.86rem; color:var(--soft); }
+  .rose-facts span{ display:block; margin-top:2px; font-family:'JetBrains Mono',ui-monospace,monospace; font-weight:300; font-size:.6rem; letter-spacing:.16em; color:var(--gold); text-transform:uppercase; }
+  .rose-facts.loren span{ color:var(--ind); }
+  .rq{ margin-top:16px; padding:2px 0 2px 14px; border-left:2px solid var(--gold); cursor:pointer; user-select:none; -webkit-user-select:none; }
+  .rq[data-who="loren"]{ border-left-color:var(--ind); }
+  .rq-en{ font-family:'Fraunces',Georgia,serif; font-style:italic; font-weight:300; font-size:1.02rem; line-height:1.5; }
+  .rq-cn{ margin-top:2px; font-size:.84rem; color:var(--soft); }
+  .rq-src{ margin-top:4px; font-family:'JetBrains Mono',ui-monospace,monospace; font-weight:300; font-size:.6rem; letter-spacing:.14em; color:var(--gold); }
+  .rq[data-who="loren"] .rq-src{ color:var(--ind); }
+  .rq.swap{ animation:lyin .5s ease both; }
+
+  .petal-field{ position:fixed; inset:0; z-index:-1; overflow:hidden; pointer-events:none; }
+  .petal-field .petal,.petal-field .ash{ animation-name:petalfall; }
+  @keyframes petalfall{ 0%{ transform:translate3d(0,-30px,0) rotate(0); opacity:0; } 10%{ opacity:.65; } 100%{ transform:translate3d(70px,110vh,0) rotate(360deg); opacity:0; } }
+  .petal{ position:absolute; top:-20px; width:10px; height:12px; border-radius:70% 0 70% 0; background:linear-gradient(135deg,#f9c4d2,#e8809e); opacity:.7; pointer-events:none; animation:petal 9s linear infinite; }
+  .ash{ position:absolute; top:-10px; width:4px; height:4px; border-radius:50%; background:rgba(110,122,176,.55); pointer-events:none; animation:petal 11s linear infinite; }
+  @keyframes petal{ 0%{ transform:translate3d(0,-20px,0) rotate(0); } 90%{ opacity:.7; } 100%{ transform:translate3d(36px,300px,0) rotate(320deg); opacity:0; } }
+  @media (prefers-reduced-motion:reduce){ .petal,.ash{ display:none; } }
+
+  .rose-hero{ position:relative; isolation:isolate; width:100%; padding:26px 20px 22px; border-radius:26px; overflow:hidden; background:linear-gradient(145deg,rgba(255,226,235,.92),rgba(247,190,208,.6)); border:1px solid rgba(255,255,255,.7); box-shadow:var(--shadow); }
+  html[data-theme="dark"] .rose-hero{ background:linear-gradient(145deg,rgba(90,40,58,.85),rgba(50,25,35,.85)); border-color:rgba(255,255,255,.08); }
+  .rose-hero.loren-hero{ background:linear-gradient(145deg,rgba(228,232,247,.95),rgba(160,172,214,.55)); }
+  html[data-theme="dark"] .rose-hero.loren-hero{ background:linear-gradient(145deg,rgba(42,47,78,.92),rgba(20,22,40,.92)); }
+  .rose-hero::before{ content:""; position:absolute; inset:0; z-index:-2; background-image:var(--hero-img,none); background-size:cover; background-position:center 25%; opacity:.5; }
+  .rose-hero.has-img::after{ content:""; position:absolute; inset:0; z-index:-1; background:linear-gradient(90deg,rgba(255,240,245,.92),rgba(255,240,245,.25)); }
+  .rose-hero.loren-hero.has-img::after{ background:linear-gradient(90deg,rgba(232,236,250,.93),rgba(232,236,250,.25)); }
+  html[data-theme="dark"] .rose-hero.has-img::after{ background:linear-gradient(90deg,rgba(40,18,27,.9),rgba(40,18,27,.3)); }
+  html[data-theme="dark"] .rose-hero.loren-hero.has-img::after{ background:linear-gradient(90deg,rgba(16,18,34,.92),rgba(16,18,34,.3)); }
+  .rose-mark{ font-family:'Fraunces','Noto Serif SC',serif; font-style:italic; font-weight:200; font-size:clamp(3.2rem,17vw,4.8rem); line-height:1.05; letter-spacing:-.02em; padding-right:.1em; background:linear-gradient(90deg,#d9708f,#f4a6bd); -webkit-background-clip:text; background-clip:text; color:transparent; }
+  .loren-mark{ font-family:'JetBrains Mono',ui-monospace,monospace; font-weight:300; font-size:clamp(2.5rem,13vw,3.9rem); line-height:1.15; letter-spacing:.14em; color:#4b5688; animation:glitch 7s steps(1) infinite; }
+  html[data-theme="dark"] .loren-mark{ color:#cfd6f2; }
+  @keyframes glitch{ 0%,93%,100%{ text-shadow:none; transform:none; } 94%{ text-shadow:3px 0 rgba(229,138,166,.7),-3px 0 rgba(118,131,184,.8); transform:translateX(1px); } 96%{ text-shadow:-3px 0 rgba(229,138,166,.7),3px 0 rgba(118,131,184,.8); transform:translateX(-1px); } }
+  @media (prefers-reduced-motion:reduce){ .loren-mark{ animation:none; } }
+  .rose-sub{ margin-top:6px; font-size:.92rem; color:var(--soft); }
+  .rose-tag{ margin-top:4px; font-family:'JetBrains Mono',ui-monospace,monospace; font-weight:300; font-size:.66rem; letter-spacing:.2em; color:var(--gold); }
+  .loren-hero .rose-tag{ color:var(--ind); }
+  .rose-quote{ margin-top:14px; font-size:.86rem; color:var(--soft); white-space:pre-line; max-width:85%; }
+  .rose-flower{ position:absolute; right:16px; top:16px; width:62px; height:62px; opacity:.9; }
+  .rose-gallery{ display:flex; gap:10px; overflow-x:auto; scroll-snap-type:x mandatory; width:100%; padding:2px 0 8px; -webkit-overflow-scrolling:touch; }
+  .rose-gallery img{ height:150px; width:auto; max-width:72vw; object-fit:cover; border-radius:16px; scroll-snap-align:start; flex-shrink:0; cursor:pointer; box-shadow:var(--shadow); }
+  .rose-actions{ display:flex; flex-wrap:wrap; gap:8px; }
+  .rose-btn{ font:inherit; font-size:.78rem; padding:8px 14px; border-radius:999px; border:1px solid var(--line); background:var(--card); color:var(--ink); cursor:pointer; }
+  .rose-btn:hover,.rose-btn.pri{ border-color:var(--gold); }
+  .rose-btn.pri{ color:var(--gold); }
+  .rose-light{ position:fixed; inset:0; z-index:100; background:rgba(14,8,10,.93); display:flex; flex-direction:column; align-items:center; justify-content:center; gap:16px; padding:20px; }
+  .rose-light img{ max-width:100%; max-height:72vh; border-radius:14px; object-fit:contain; }
+  .rl-bar{ display:flex; gap:10px; flex-wrap:wrap; justify-content:center; }
+
+  /* 进入 LØREN 专区：整页切成靛蓝冷调 */
+  body.in-loren{ --gold:#7683b8; --gold-l:#c9d0ea; --mute:#8b92b0; --soft:#4d5472; --ink:#1c2038; --line:rgba(60,70,120,.12);
+    background:radial-gradient(60% 40% at 15% 0%,#fff 0%,transparent 70%),radial-gradient(55% 45% at 90% 15%,rgba(170,180,224,.55) 0%,transparent 70%),radial-gradient(60% 50% at 50% 100%,rgba(232,236,250,.95) 0%,transparent 70%),#f3f4fa; background-attachment:fixed; }
+  html[data-theme="dark"] body.in-loren{ --gold:#8e9bd0; --gold-l:#c4cbea;
+    background:radial-gradient(55% 45% at 90% 12%,rgba(142,155,208,.22) 0%,transparent 70%),radial-gradient(60% 50% at 10% 100%,rgba(142,155,208,.1) 0%,transparent 70%),#0c0d16; background-attachment:fixed; }
+  body.in-loren .marquee .dot{ box-shadow:0 0 0 4px rgba(118,131,184,.22); }
+  body.in-loren .petal-field .petal{ display:none; }
+  body.in-loren .progress-fill{ background:linear-gradient(90deg,#aab4e0,var(--gold)); }
+  body.in-loren .ctrl-btn.main,body.in-loren .track.active .track-play{ background:linear-gradient(160deg,#8e9bd0,#515b8c); color:#fff; box-shadow:0 12px 24px -8px rgba(81,91,140,.55), inset 0 1px 1px rgba(255,255,255,.3); }
+  html[data-theme="dark"] body.in-loren .ctrl-btn.main,html[data-theme="dark"] body.in-loren .track.active .track-play{ background:linear-gradient(160deg,#dfe4f7,#8e9bd0); color:#1c2038; box-shadow:0 10px 22px -8px rgba(142,155,208,.5), inset 0 1px 1px rgba(255,255,255,.6); }
+  body.in-loren .stage{ background:linear-gradient(145deg,rgba(248,249,255,.92),rgba(232,236,250,.6)); }
+  html[data-theme="dark"] body.in-loren .stage{ background:linear-gradient(145deg,rgba(34,38,64,.92),rgba(18,20,36,.8)); }
+  html[data-theme="dark"] body.in-loren{ --card:#171a2c; --line:rgba(255,255,255,.09); --mute:#8189aa; --soft:#c5cae4; --ink:#eef0fa; }
 </style>
 </head>
 <body>
@@ -364,11 +469,16 @@
 
   <header class="hero">
     <div class="marquee">
-      <span><span class="dot"></span><span class="live">音乐馆</span></span>
+      <span><span class="dot"></span><img class="rose-avatar" id="roseAvatar" alt="" hidden><img class="rose-avatar loren" id="lorenAvatar" alt="" hidden><span class="live">ROSÉ × LØREN · 音乐馆</span></span>
       <span><button class="theme-btn" id="themeBtn" aria-label="切换深色模式" title="单击切换，双击恢复自动（19:00–06:00 深色）"></button></span>
     </div>
-    <h1 class="hero-title">音乐馆<br><em>。。。</em></h1>
+    <h1 class="hero-title">Rosé<span class="x">×</span><span class="ln">LØREN</span></h1>
     <p class="hero-sub"></p>
+    <div class="facts-row">
+      <div class="rose-facts">Rosé · 朴彩英 · 박채영<span>rosie · 2024.12.06 / APT. × Bruno Mars</span></div>
+      <div class="rose-facts loren">LØREN · 李圣俊 · 이승주<span>EMPTY TRASH · 2020.11.13 / Put Up a Fight · 2023.03.24</span></div>
+    </div>
+    <div class="rq" id="homeQuote" role="button" tabindex="0" title="点一下换一句"><div class="rq-en"></div><div class="rq-cn"></div><div class="rq-src"></div></div>
     <div class="home-tools">
       <input class="search" id="homeSearch" type="search" placeholder="搜索歌名 / 歌手" aria-label="搜索歌曲">
       <button class="chip lucky" id="btnLucky">随便听听</button>
@@ -380,29 +490,7 @@
     <div class="turntable">
       <div class="vinyl" id="vinyl">
         <div class="label">
-          <svg viewBox="0 0 60 60" aria-hidden="true">
-            <path d="M11 31Q8 13 14 8.5Q17 7.5 20 10.5L29 19Z" fill="#a38f78"/>
-            <path d="M49 31Q52 13 46 8.5Q43 7.5 40 10.5L31 19Z" fill="#a38f78"/>
-            <path d="M14 25Q12.5 16 15 13Q16.5 12.5 18 14L23 19.5Z" fill="#f2b8b8"/>
-            <path d="M46 25Q47.5 16 45 13Q43.5 12.5 42 14L37 19.5Z" fill="#f2b8b8"/>
-            <path d="M11 40L6.5 42.5L11.5 44ZM49 40L53.5 42.5L48.5 44Z" fill="#fffaf0"/>
-            <ellipse cx="30" cy="35" rx="19.5" ry="16" fill="#fffaf0" stroke="#e0cfae" stroke-width=".8"/>
-            <path d="M30 17Q23 18 22 26Q26 25 30 27Q34 25 38 26Q37 18 30 17Z" fill="#b9a68e" opacity=".85"/>
-            <ellipse cx="30" cy="41.5" rx="7.5" ry="5" fill="#fff"/>
-            <ellipse cx="16" cy="40" rx="3" ry="1.8" fill="#f6b9b4" opacity=".65"/>
-            <ellipse cx="44" cy="40" rx="3" ry="1.8" fill="#f6b9b4" opacity=".65"/>
-            <ellipse cx="21.5" cy="33" rx="4" ry="4.4" fill="#5f9fd8"/>
-            <ellipse cx="38.5" cy="33" rx="4" ry="4.4" fill="#5f9fd8"/>
-            <ellipse cx="21.5" cy="33.3" rx="2.1" ry="2.8" fill="#14130f"/>
-            <ellipse cx="38.5" cy="33.3" rx="2.1" ry="2.8" fill="#14130f"/>
-            <circle cx="20.4" cy="31.5" r="1.3" fill="#fff"/>
-            <circle cx="37.4" cy="31.5" r="1.3" fill="#fff"/>
-            <circle cx="22.8" cy="35" r=".7" fill="#fff"/>
-            <circle cx="39.8" cy="35" r=".7" fill="#fff"/>
-            <path d="M28 38.2h4q0 2-2 2.4q-2-.4-2-2.4z" fill="#f29fa0"/>
-            <path d="M30 40.6v1.4M30 42q-2.2 2-4.2.6M30 42q2.2 2 4.2.6" stroke="#8a7560" stroke-width=".9" fill="none" stroke-linecap="round"/>
-            <path d="M13 41L6 40M13 44L6 45.5M47 41L54 40M47 44L54 45.5" stroke="#fff" stroke-width=".9" stroke-linecap="round" opacity=".9"/>
-          </svg>
+          <svg class="lb-rose" viewBox="0 0 60 60" aria-hidden="true"><circle cx="30" cy="30" r="30" fill="#f4a6bd"/><g transform="translate(30 30)"><g fill="#fff" opacity=".93"><ellipse cx="0" cy="-11" rx="7" ry="10"/><ellipse cx="0" cy="-11" rx="7" ry="10" transform="rotate(72)"/><ellipse cx="0" cy="-11" rx="7" ry="10" transform="rotate(144)"/><ellipse cx="0" cy="-11" rx="7" ry="10" transform="rotate(216)"/><ellipse cx="0" cy="-11" rx="7" ry="10" transform="rotate(288)"/></g><circle r="5.5" fill="#e8809e"/><circle r="2.2" fill="#fff"/></g></svg><svg class="lb-loren" viewBox="0 0 60 60" aria-hidden="true"><circle cx="30" cy="30" r="30" fill="#3d4570"/><circle cx="30" cy="30" r="13" fill="none" stroke="#fff" stroke-width="3.6"/><path d="M19.5 41.5L40.5 18.5" stroke="#fff" stroke-width="3.6" stroke-linecap="round"/></svg>
           <img class="label-img" id="labelImg" alt="" hidden>
         </div>
       </div>
@@ -433,13 +521,14 @@
   <section class="section" id="collections">
     <div class="section-head">
       <h2 class="section-title">我的收藏</h2>
-      <span class="section-tag">点开查看</span>
+      <span class="section-tag">ROSIE · LØREN · 点开查看</span>
     </div>
     <div class="tracks" id="searchRes" hidden></div>
     <div class="coll-grid">
       <button class="coll" data-target="p0"><span class="cover"></span><span class="c-name">全部歌曲</span><span class="c-count">00 首</span></button>
       <button class="coll" data-target="p1"><span class="cover"></span><span class="c-name">我的最爱</span><span class="c-count">00 首</span></button>
-      <button class="coll" data-target="p2"><span class="cover"></span><span class="c-name">最近常听</span><span class="c-count">00 首</span></button>
+            <button class="coll" data-target="p3"><span class="cover" id="roseCover"></span><span class="c-name">朴彩英 ROSÉ</span><span class="c-count">00 首</span></button>
+      <button class="coll" data-target="p4"><span class="cover" id="lorenCover"></span><span class="c-name">李圣俊 LØREN</span><span class="c-count">00 首</span></button>
     </div>
 
     <!-- 全部歌曲：所有歌曲都登记在这里（"我的最爱"由 ♥ 自动生成，"最近常听"由播放记录自动生成）-->
@@ -492,21 +581,62 @@
       <p class="hint drag-hint" hidden>按住序号上下拖动，可调整顺序</p>
     </div>
 
-    <div class="coll-panel" id="p2" hidden>
+
+    <div class="coll-panel" id="p3" hidden>
       <div class="panel-head">
         <button class="panel-close" aria-label="返回">‹ 返回</button>
-        <div class="panel-line"><span class="panel-title">最近常听</span><span class="panel-count"></span></div>
-        <div class="panel-tools">
-          <input class="search panel-search" type="search" placeholder="在此歌单中搜索" aria-label="搜索">
+        <div class="panel-line"><span class="panel-title">朴彩英 ROSÉ</span><span class="panel-count"></span></div>
+        <div class="rose-hero " id="roseHero">
+          <span class="petal" style="left:8%;animation-delay:0.0s;animation-duration:8.0s"></span><span class="petal" style="left:24%;animation-delay:2.4s;animation-duration:10.0s"></span><span class="petal" style="left:42%;animation-delay:5.0s;animation-duration:9.0s"></span><span class="petal" style="left:58%;animation-delay:1.2s;animation-duration:11.0s"></span><span class="petal" style="left:74%;animation-delay:3.6s;animation-duration:8.5s"></span><span class="petal" style="left:90%;animation-delay:6.2s;animation-duration:10.5s"></span><svg class="rose-flower" viewBox="0 0 60 60" aria-hidden="true"><circle cx="30" cy="30" r="29" fill="#f4a6bd" opacity=".85"/><g transform="translate(30 30)"><g fill="#fff" opacity=".93"><ellipse cx="0" cy="-11" rx="7" ry="10"/><ellipse cx="0" cy="-11" rx="7" ry="10" transform="rotate(72)"/><ellipse cx="0" cy="-11" rx="7" ry="10" transform="rotate(144)"/><ellipse cx="0" cy="-11" rx="7" ry="10" transform="rotate(216)"/><ellipse cx="0" cy="-11" rx="7" ry="10" transform="rotate(288)"/></g><circle r="5.5" fill="#e8809e"/><circle r="2.2" fill="#fff"/></g></svg>
+          <div class="rose-mark">Rosé</div>
+          <div class="rose-sub">朴彩英 · 박채영 · Park Chaeyoung</div>
+          <div class="rose-tag">BLACKPINK · 1997.02.11</div>
+          <div class="rose-quote" id="roseQuote"></div>
         </div>
+        <div class="rose-gallery" id="roseGallery" hidden></div>
+        <div class="rose-actions">
+          <button class="rose-btn pri" id="roseAddSong">＋ 添加歌曲</button>
+          <button class="rose-btn" id="roseAddPhoto">＋ 添加照片</button>
+          <button class="rose-btn" id="roseEditText">编辑文字</button>
+        </div>
+        <input type="file" id="roseSongFile" accept="audio/*,.lrc" multiple hidden>
+        <input type="file" id="rosePhotoFile" accept="image/*" multiple hidden>
+        <div class="panel-tools"><input class="search panel-search" type="search" placeholder="在此歌单中搜索" aria-label="搜索"></div>
       </div>
       <div class="tracks"></div>
-      <p class="empty">还没有播放记录，听几首歌就会出现在这里</p>
+      <p class="empty">还没有歌曲，点上方「＋ 添加歌曲」</p>
+      <p class="hint drag-hint" hidden>按住序号上下拖动可调整顺序 · 长按歌曲可移除</p>
+    </div>
+
+    <div class="coll-panel" id="p4" hidden>
+      <div class="panel-head">
+        <button class="panel-close" aria-label="返回">‹ 返回</button>
+        <div class="panel-line"><span class="panel-title">李圣俊 LØREN</span><span class="panel-count"></span></div>
+        <div class="rose-hero loren-hero" id="lorenHero">
+          <span class="ash" style="left:8%;animation-delay:0.0s;animation-duration:8.0s"></span><span class="ash" style="left:24%;animation-delay:2.4s;animation-duration:10.0s"></span><span class="ash" style="left:42%;animation-delay:5.0s;animation-duration:9.0s"></span><span class="ash" style="left:58%;animation-delay:1.2s;animation-duration:11.0s"></span><span class="ash" style="left:74%;animation-delay:3.6s;animation-duration:8.5s"></span><span class="ash" style="left:90%;animation-delay:6.2s;animation-duration:10.5s"></span><svg class="rose-flower" viewBox="0 0 60 60" aria-hidden="true"><circle cx="30" cy="30" r="29" fill="#3d4570" opacity=".9"/><circle cx="30" cy="30" r="13" fill="none" stroke="#fff" stroke-width="3.6"/><path d="M19.5 41.5L40.5 18.5" stroke="#fff" stroke-width="3.6" stroke-linecap="round"/></svg>
+          <div class="loren-mark">LØREN</div>
+          <div class="rose-sub">李圣俊 · 이승주 · Lee Seung-joo</div>
+          <div class="rose-tag">ALT-ROCK · 1995.01.10</div>
+          <div class="rose-quote" id="lorenQuote"></div>
+        </div>
+        <div class="rose-gallery" id="lorenGallery" hidden></div>
+        <div class="rose-actions">
+          <button class="rose-btn pri" id="lorenAddSong">＋ 添加歌曲</button>
+          <button class="rose-btn" id="lorenAddPhoto">＋ 添加照片</button>
+          <button class="rose-btn" id="lorenEditText">编辑文字</button>
+        </div>
+        <input type="file" id="lorenSongFile" accept="audio/*,.lrc" multiple hidden>
+        <input type="file" id="lorenPhotoFile" accept="image/*" multiple hidden>
+        <div class="panel-tools"><input class="search panel-search" type="search" placeholder="在此歌单中搜索" aria-label="搜索"></div>
+      </div>
+      <div class="tracks"></div>
+      <p class="empty">还没有歌曲，点上方「＋ 添加歌曲」</p>
+      <p class="hint drag-hint" hidden>按住序号上下拖动可调整顺序 · 长按歌曲可移除</p>
     </div>
   </section>
 
   <footer>
-    <span>音乐馆 · 来自 2026.6.13 营业至今</span>
+    <span>Rosé × LØREN 音乐馆 · 来自 2026.6.13 营业至今</span>
     <span>作者 陈栖</span>
   </footer>
 
@@ -519,6 +649,25 @@
     <button class="ctrl-btn skip" id="lyrPrev" aria-label="上一首"></button>
     <button class="ctrl-btn main" id="lyrPlay" aria-label="播放/暂停"></button>
     <button class="ctrl-btn skip" id="lyrNext" aria-label="下一首"></button>
+  </div>
+</div>
+<div class="petal-field" aria-hidden="true"><span class="petal" style="left:6%;animation-delay:0.0s;animation-duration:14.0s"></span><span class="petal" style="left:19%;animation-delay:5.0s;animation-duration:17.0s"></span><span class="petal" style="left:33%;animation-delay:9.0s;animation-duration:15.0s"></span><span class="petal" style="left:47%;animation-delay:2.0s;animation-duration:18.0s"></span><span class="petal" style="left:61%;animation-delay:7.0s;animation-duration:16.0s"></span><span class="petal" style="left:75%;animation-delay:11.0s;animation-duration:19.0s"></span><span class="petal" style="left:88%;animation-delay:4.0s;animation-duration:15.0s"></span><span class="ash" style="left:12%;animation-delay:3.0s;animation-duration:16.0s"></span><span class="ash" style="left:40%;animation-delay:8.0s;animation-duration:19.0s"></span><span class="ash" style="left:68%;animation-delay:1.0s;animation-duration:17.0s"></span><span class="ash" style="left:94%;animation-delay:10.0s;animation-duration:18.0s"></span></div>
+<div class="rose-light" id="roseLight" hidden>
+  <img id="roseLightImg" alt="">
+  <div class="rl-bar">
+    <button class="rose-btn" id="roseLightPrev">‹ 上一张</button>
+    <button class="rose-btn" id="roseLightNext">下一张 ›</button>
+    <button class="rose-btn" id="roseLightDel">删除这张</button>
+    <button class="rose-btn pri" id="roseLightClose">关闭</button>
+  </div>
+</div>
+<div class="rose-light" id="lorenLight" hidden>
+  <img id="lorenLightImg" alt="">
+  <div class="rl-bar">
+    <button class="rose-btn" id="lorenLightPrev">‹ 上一张</button>
+    <button class="rose-btn" id="lorenLightNext">下一张 ›</button>
+    <button class="rose-btn" id="lorenLightDel">删除这张</button>
+    <button class="rose-btn pri" id="lorenLightClose">关闭</button>
   </div>
 </div>
 <div class="toast" id="toast" role="status" aria-live="polite"></div>
@@ -1181,6 +1330,194 @@
   }
   document.addEventListener('pointerup', endDrag);
   document.addEventListener('pointercancel', () => { if (dnd) dnd.moved = false; endDrag(); });
+
+  /* ================= 艺人专区：朴彩英 / LØREN + 首页语录 ================= */
+  (function(){
+    /* ---- 语录：均为公开采访中的原话（英文原文），中文为意译 ---- */
+    const QUOTES = [
+      { who: 'rose', name: 'ROSÉ', en: 'It was like a therapy session.', cn: '那就像一场心理治疗。', src: '谈制作 rosie 专辑 · Apple Music 访谈，2024' },
+      { who: 'loren', name: 'LØREN', en: 'I didn’t know if I deserved a spot in The Black Label.', cn: '我不知道自己配不配在 The Black Label 占有一席之地。', src: '谈被厂牌发现 · i-D 访谈，2021' },
+      { who: 'rose', name: 'ROSÉ', en: 'Nobody knew what K-pop was, so nobody understood where I was going.', cn: '没人知道 K-pop 是什么，所以没人明白我要去哪里。', src: '回忆 15 岁退学赴韩 · Vogue Australia 访谈，2021' },
+      { who: 'loren', name: 'LØREN', en: 'It was my personal fight against the normalities of music.', cn: '那是我对音乐里种种“常规”的一场个人抗争。', src: '谈 EP《Put Up a Fight》的名字 · Panorama 访谈，2023' },
+      { who: 'rose', name: 'ROSÉ', en: '…if it means more to my community, it would be special.', cn: '……如果它对我的社群意义更大，那会很特别。', src: '谈格莱美 · Dazed 访谈，2025' },
+      { who: 'loren', name: 'LØREN', en: '…my first friend is my guitar.', cn: '……我的第一个朋友是我的吉他。', src: '回忆在新加坡的学生时期 · Nylon Manila 报道' },
+      { who: 'rose', name: 'ROSÉ', en: '…this whole journey was not easy at all…', cn: '……这一路真的一点都不容易。', src: '回顾 2024 年 · People 报道，2025' }
+    ];
+    const hq = $('homeQuote'); let qi = Math.floor(Math.random() * QUOTES.length);
+    const quoteList = () => {
+      const out = QUOTES.slice();
+      const r = LS.get('roseText', ''), l = LS.get('lorenText', '');
+      if (r) out.push({ who: 'rose', name: 'ROSÉ', en: '', cn: r, src: '我想对她说' });
+      if (l) out.push({ who: 'loren', name: 'LØREN', en: '', cn: l, src: '我想对他说' });
+      return out;
+    };
+    function showQuote(){
+      const list = quoteList(), q = list[qi % list.length];
+      hq.dataset.who = q.who;
+      hq.querySelector('.rq-en').textContent = q.en ? '“' + q.en + '”' : '';
+      hq.querySelector('.rq-cn').textContent = q.cn;
+      hq.querySelector('.rq-src').textContent = '— ' + q.name + ' · ' + q.src;
+      hq.classList.remove('swap'); void hq.offsetWidth; hq.classList.add('swap');
+    }
+    const nextQuote = () => { qi = (qi + 1) % quoteList().length; showQuote(); };
+    hq.addEventListener('click', nextQuote);
+    hq.addEventListener('keydown', e => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); nextQuote(); } });
+    setInterval(() => { if (!document.hidden) nextQuote(); }, 30000);
+    showQuote();
+
+    /* ---- 黑胶中心：按歌手切换玫瑰 / Ø ---- */
+    const _setCover = setCover;
+    setCover = function(m){ _setCover(m); vinyl.dataset.artist = /^l/.test(m.id) ? 'loren' : 'rose'; };
+
+    /* ---- 通用专区 ---- */
+    function zone(cfg){
+      const key = cfg.key, pid = cfg.pid;
+      let order = [], photoURL = '', photos = [];
+      panelDefs[pid] = { get: () => order, set: v => { order = v; LS.set(key + 'Order', v); }, sortable: true, empty: '还没有歌曲，点上方「＋ 添加歌曲」' };
+      view[pid] = { q: '', sort: 'default' };
+
+      const idb = new Promise(res => {
+        try {
+          const rq = indexedDB.open('yinyueguan_' + key, 1);
+          rq.onupgradeneeded = () => rq.result.createObjectStore('f', { keyPath: 'id' });
+          rq.onsuccess = () => res(rq.result);
+          rq.onerror = () => res(null);
+        } catch (e) { res(null); }
+      });
+      const tx = (mode, fn) => idb.then(d => d ? new Promise(res => {
+        const t = d.transaction('f', mode), r = fn(t.objectStore('f'));
+        t.oncomplete = () => res(r && r.result); t.onerror = () => res(null);
+      }) : null);
+      const isPhoto = r => r.kind === 'photo' || r.id === '__photo';
+      const E = s => $(key + s);
+      const panel = $(pid), hero = E('Hero'), gallery = E('Gallery'), cover = E('Cover'), quote = E('Quote'), avatar = E('Avatar');
+
+      const showText = () => { quote.textContent = LS.get(key + 'Text', '写下你想对' + cfg.pron + '说的话…'); };
+      showText();
+
+      function refreshPhotos(){
+        gallery.replaceChildren(...photos.map(p => { const i = document.createElement('img'); i.src = p.url; i.alt = ''; i.dataset.id = p.id; return i; }));
+        gallery.hidden = !photos.length;
+        photoURL = photos.length ? photos[0].url : '';
+        hero.style.setProperty('--hero-img', photoURL ? 'url(' + photoURL + ')' : 'none');
+        hero.classList.toggle('has-img', !!photoURL);
+        cover.style.backgroundImage = photoURL ? 'url(' + photoURL + ')' : '';
+        cover.classList.toggle('has-photo', !!photoURL);
+        if (photoURL) avatar.src = photoURL;
+        avatar.hidden = !photoURL;
+        order.forEach(id => { if (lib[id]) lib[id].cover = photoURL; });
+        if (curId && order.includes(curId)) setCover(lib[curId]);
+      }
+      const pushPhoto = r => photos.push({ id: r.id, t: r.t || 0, url: URL.createObjectURL(r.blob) });
+
+      const light = E('Light'), lImg = E('LightImg'); let li = 0;
+      function openLight(i){
+        if (!photos.length) { light.hidden = true; return; }
+        li = (i + photos.length) % photos.length; lImg.src = photos[li].url; light.hidden = false;
+      }
+      gallery.addEventListener('click', e => { const t = e.target.closest('img'); if (t) openLight(photos.findIndex(p => p.id === t.dataset.id)); });
+      light.addEventListener('click', e => { if (e.target === light) light.hidden = true; });
+      E('LightClose').onclick = () => { light.hidden = true; };
+      E('LightPrev').onclick = () => openLight(li - 1);
+      E('LightNext').onclick = () => openLight(li + 1);
+      E('LightDel').onclick = () => {
+        if (!confirm('删除这张照片？')) return;
+        const p = photos[li]; photos.splice(li, 1); URL.revokeObjectURL(p.url);
+        tx('readwrite', s => s.delete(p.id)); refreshPhotos(); openLight(Math.min(li, photos.length - 1));
+      };
+
+      function reg(r){
+        lib[r.id] = { id: r.id, title: r.title, artist: r.artist, dur: r.dur || 0, src: URL.createObjectURL(r.blob), cover: photoURL, lrc: 'data:text/plain,' };
+        if (r.lrc) inlineLrc[r.id] = r.lrc;
+      }
+      const probe = id => new Promise(res => {
+        const a = new Audio(); a.preload = 'metadata';
+        a.onloadedmetadata = () => res(a.duration); a.onerror = () => res(0);
+        a.src = lib[id].src;
+      });
+      async function addFiles(list){
+        const all = Array.from(list), lrcs = {};
+        for (const f of all.filter(f => /\.lrc$/i.test(f.name))) lrcs[f.name.replace(/\.lrc$/i, '')] = await f.text();
+        let n = 0;
+        for (const f of all.filter(f => !/\.lrc$/i.test(f.name))) {
+          const base = f.name.replace(/\.\w+$/, '');
+          const r = { id: cfg.prefix + Date.now().toString(36) + (n++), title: base, artist: '歌手:' + cfg.artist, dur: 0, blob: f, lrc: lrcs[base] || '' };
+          reg(r); order.push(r.id);
+          const d = await probe(r.id); if (d) { r.dur = Math.round(d); setDur(r.id, d); }
+          await tx('readwrite', s => s.put(r));
+        }
+        LS.set(key + 'Order', order);
+        renderPanel(pid, true); updateCounts();
+        toast(n ? '已添加 ' + n + ' 首' : '没有选到音频文件');
+      }
+      function removeSong(id){
+        if (curId === id) {
+          stopAll(); isPlaying = false; curId = null;
+          npTitle.textContent = '— 暂停中，请点歌 —'; npArtist.textContent = '点击下方曲目试听';
+          progressFill.style.width = '0%'; timeNow.textContent = '0:00'; timeTotal.textContent = '0:00';
+          lyricEl.hidden = true; refreshPlayUI();
+        }
+        URL.revokeObjectURL(lib[id].src); delete lib[id]; delete inlineLrc[id];
+        order = order.filter(x => x !== id); LS.set(key + 'Order', order);
+        favs = favs.filter(x => x !== id); LS.set('fav', favs);
+        recent = recent.filter(x => x !== id); LS.set('recent', recent);
+        queue = queue.filter(x => x !== id);
+        tx('readwrite', s => s.delete(id));
+        renderPanel(pid, true); updateCounts();
+      }
+
+      E('AddSong').onclick = () => E('SongFile').click();
+      E('SongFile').onchange = e => { addFiles(e.target.files); e.target.value = ''; };
+      E('AddPhoto').onclick = () => E('PhotoFile').click();
+      E('PhotoFile').onchange = async e => {
+        const fs = Array.from(e.target.files); e.target.value = '';
+        let k = 0;
+        for (const f of fs) {
+          const r = { id: 'ph_' + Date.now().toString(36) + (k++), kind: 'photo', blob: f, t: Date.now() + k };
+          pushPhoto(r); await tx('readwrite', s => s.put(r));
+        }
+        refreshPhotos(); if (fs.length) toast('已添加 ' + fs.length + ' 张照片');
+      };
+      E('EditText').onclick = () => {
+        const t = prompt('写点什么吧（可换行）。写下的话也会出现在首页的语录里', LS.get(key + 'Text', ''));
+        if (t === null) return;
+        LS.set(key + 'Text', t.trim()); showText();
+        if (t.trim()) { const list = quoteList(); qi = list.findIndex(q => q.src === cfg.mine); showQuote(); }
+      };
+
+      // 长按歌曲 → 移除
+      let lp = 0, lx = 0, ly = 0;
+      panel.addEventListener('pointerdown', e => {
+        const t = e.target.closest('.track'); if (!t || e.target.closest('.track-num,.track-fav')) return;
+        lx = e.clientX; ly = e.clientY;
+        lp = setTimeout(() => {
+          lp = 0; const id = t.dataset.id;
+          if (lib[id] && confirm('从「' + cfg.name + '」专区移除《' + lib[id].title + '》？')) removeSong(id);
+          justDragged = true; setTimeout(() => { justDragged = false; }, 400);
+        }, 700);
+      });
+      panel.addEventListener('pointermove', e => { if (lp && Math.hypot(e.clientX - lx, e.clientY - ly) > 8) { clearTimeout(lp); lp = 0; } });
+      ['pointerup', 'pointercancel'].forEach(ev => panel.addEventListener(ev, () => { clearTimeout(lp); lp = 0; }));
+
+      if (cfg.theme) {
+        const sync = () => document.body.classList.toggle(cfg.theme, !panel.hidden);
+        new MutationObserver(sync).observe(panel, { attributes: true, attributeFilter: ['hidden'] }); sync();
+      }
+
+      idb.then(async () => {
+        const recs = (await tx('readonly', s => s.getAll())) || [];
+        recs.filter(isPhoto).sort((a, b) => (a.t || 0) - (b.t || 0)).forEach(pushPhoto);
+        refreshPhotos();
+        const songs = recs.filter(r => !isPhoto(r)); songs.forEach(reg);
+        const saved = LS.get(key + 'Order', []) || [], ids = songs.map(r => r.id);
+        order = saved.filter(id => ids.includes(id)).concat(ids.filter(id => !saved.includes(id)));
+        refreshPhotos(); updateCounts(); if (!panel.hidden) renderPanel(pid, true);
+        if (!curId) restoreState();
+      });
+    }
+    zone({ key: 'rose',  pid: 'p3', prefix: 'r', name: '朴彩英', artist: '朴彩英', pron: '她', mine: '我想对她说' });
+    zone({ key: 'loren', pid: 'p4', prefix: 'l', name: '李圣俊', artist: 'LØREN', pron: '他', mine: '我想对他说', theme: 'in-loren' });
+  })();
 
   /* ================= 搜索 / 排序 / 随便听听 ================= */
   const homeSearch = $('homeSearch'), searchRes = $('searchRes');
