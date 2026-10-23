@@ -1599,8 +1599,15 @@
         recs.filter(isPhoto).sort((a, b) => (a.t || 0) - (b.t || 0)).forEach(pushPhoto);
         refreshPhotos();
         const songs = recs.filter(r => !isPhoto(r)); songs.forEach(reg);
+        // GitHub 静态音乐：无需在浏览器本地重复添加，上传对应 MP3 后即可播放
+        const staticSongs = cfg.songs || [];
+        staticSongs.forEach(r => {
+          lib[r.id] = { id:r.id, title:r.title, artist:r.artist || ('歌手:' + cfg.artist), dur:r.dur || 0,
+            src:r.src, cover:photoURL, lrc:'data:text/plain,' };
+        });
         const saved = LS.get(key + 'Order', []) || [], ids = songs.map(r => r.id);
-        order = saved.filter(id => ids.includes(id)).concat(ids.filter(id => !saved.includes(id)));
+        const staticIds = staticSongs.map(r => r.id);
+        order = staticIds.concat(saved.filter(id => ids.includes(id)), ids.filter(id => !saved.includes(id)));
         refreshPhotos(); updateCounts(); if (!panel.hidden) renderPanel(pid, true);
         if (!curId) restoreState();
       });
@@ -1608,12 +1615,22 @@
     zone({
       key: 'rose', pid: 'p3', prefix: 'r', name: '朴彩英', artist: '朴彩英',
       pron: '她', mine: '我想对她说',
-      gallery: Array.from({length: 8}, (_, i) => `images/rose/rose-${String(i + 1).padStart(2, '0')}.jpg`)
+      gallery: Array.from({length: 8}, (_, i) => `images/rose/rose-${String(i + 1).padStart(2, '0')}.jpg`),
+      songs: [
+        { id:'rose-song-1', title:'朴彩英新歌 1（请改歌名）', artist:'朴彩英', src:'rose-song1.mp3' },
+        { id:'rose-song-2', title:'朴彩英新歌 2（请改歌名）', artist:'朴彩英', src:'rose-song2.mp3' },
+        { id:'rose-song-3', title:'朴彩英新歌 3（请改歌名）', artist:'朴彩英', src:'rose-song3.mp3' }
+      ]
     });
     zone({
       key: 'loren', pid: 'p4', prefix: 'l', name: '李圣俊', artist: 'LØREN',
       pron: '他', mine: '我想对他说', theme: 'in-loren',
-      gallery: Array.from({length: 8}, (_, i) => `images/loren/loren-${String(i + 1).padStart(2, '0')}.jpg`)
+      gallery: Array.from({length: 8}, (_, i) => `images/loren/loren-${String(i + 1).padStart(2, '0')}.jpg`),
+      songs: [
+        { id:'loren-song-1', title:'李胜俊新歌 1（请改歌名）', artist:'LØREN', src:'loren-song1.mp3' },
+        { id:'loren-song-2', title:'李胜俊新歌 2（请改歌名）', artist:'LØREN', src:'loren-song2.mp3' },
+        { id:'loren-song-3', title:'李胜俊新歌 3（请改歌名）', artist:'LØREN', src:'loren-song3.mp3' }
+      ]
     });
   })();
 
