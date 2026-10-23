@@ -461,6 +461,38 @@
   body.in-loren .stage{ background:linear-gradient(145deg,rgba(248,249,255,.92),rgba(232,236,250,.6)); }
   html[data-theme="dark"] body.in-loren .stage{ background:linear-gradient(145deg,rgba(34,38,64,.92),rgba(18,20,36,.8)); }
   html[data-theme="dark"] body.in-loren{ --card:#171a2c; --line:rgba(255,255,255,.09); --mute:#8189aa; --soft:#c5cae4; --ink:#eef0fa; }
+
+  /* ===== 体验打磨：键盘焦点 / 歌词页氛围 ===== */
+  button:focus-visible,.search:focus-visible,.sort:focus-visible,.rq:focus-visible{ outline:2px solid var(--gold); outline-offset:2px; }
+  .lyr-full{ background:radial-gradient(60% 45% at 50% 28%,color-mix(in srgb,var(--gold) 20%,transparent),transparent 72%),var(--bg); }
+  .lyr-list{ -webkit-mask-image:linear-gradient(transparent,#000 22%,#000 78%,transparent); mask-image:linear-gradient(transparent,#000 22%,#000 78%,transparent); }
+  .lyr-line{ padding:10px 24px; opacity:.5; transition:color .35s, transform .35s, opacity .35s; }
+  .lyr-line.cur{ font-size:1.3rem; color:var(--ink); opacity:1; transform:scale(1.08); }
+  .lyr-line.cur::before{ content:""; display:block; width:18px; height:2px; margin:0 auto 8px; border-radius:2px; background:var(--gold); }
+  @media (prefers-reduced-motion:reduce){ .lyr-line{ transition:none; } .lyr-line.cur{ transform:none; } }
+
+  /* ===== 惊艳层：极光背景 / 节拍光晕 / 聚光灯 / 歌词景深 ===== */
+  .aurora{ position:fixed; inset:-20%; z-index:-2; pointer-events:none; filter:blur(70px); opacity:.5; transition:opacity 1.4s; }
+  .aurora i{ position:absolute; border-radius:50%; width:46vmax; height:46vmax; animation:drift 24s ease-in-out infinite alternate; }
+  .aurora i:nth-child(1){ left:-5%; top:-10%; background:radial-gradient(circle,#f6a5bd,transparent 65%); }
+  .aurora i:nth-child(2){ right:-10%; top:20%; background:radial-gradient(circle,#8e9bd0,transparent 65%); animation-duration:30s; animation-delay:-9s; }
+  .aurora i:nth-child(3){ left:20%; bottom:-25%; background:radial-gradient(circle,#ffd3df,transparent 65%); animation-duration:36s; animation-delay:-15s; }
+  @keyframes drift{ to{ transform:translate3d(14vw,10vh,0) scale(1.25); } }
+  body.playing .aurora{ opacity:.9; }
+  html[data-theme="dark"] .aurora{ opacity:.22; }
+  html[data-theme="dark"] body.playing .aurora{ opacity:.5; }
+  .stage .turntable::before{ box-shadow:0 0 0 1px var(--line), 0 14px 26px -14px rgba(0,0,0,.35), 0 0 calc(8px + var(--beat,0) * 60px) calc(var(--beat,0) * 12px) color-mix(in srgb,var(--gold) 60%,transparent); }
+  .hero-title .ln{ background-image:linear-gradient(90deg,#7683b8,#c3cbf0,#7683b8); background-size:200% 100%; animation:shine 6s linear infinite; }
+  @keyframes shine{ to{ background-position:-200% 0; } }
+  .coll{ position:relative; overflow:hidden; }
+  .coll::before{ content:""; position:absolute; inset:0; border-radius:inherit; pointer-events:none; opacity:0; transition:opacity .3s; background:radial-gradient(200px circle at var(--mx,50%) var(--my,0%),color-mix(in srgb,var(--gold) 26%,transparent),transparent 70%); }
+  .coll:hover::before{ opacity:1; }
+  .lyr-full{ isolation:isolate; overflow:hidden; }
+  .lyr-full::before{ content:""; position:absolute; inset:-30%; z-index:-1; pointer-events:none; filter:blur(90px); opacity:.7; background:conic-gradient(from 0deg,color-mix(in srgb,var(--gold) 38%,transparent),transparent 30%,color-mix(in srgb,var(--ind) 38%,transparent) 55%,transparent 80%,color-mix(in srgb,var(--gold) 38%,transparent)); animation:spin 40s linear infinite; }
+  .lyr-line{ font-size:1.2rem; }
+  .lyr-line.cur{ font-size:1.7rem; font-weight:500; }
+  .lyr-list:hover .lyr-line{ filter:none !important; }
+  @media (prefers-reduced-motion:reduce){ .aurora i,.lyr-full::before,.hero-title .ln{ animation:none; } }
 </style>
 </head>
 <body>
@@ -514,6 +546,8 @@
       </div>
 
       <div class="more" id="more">
+        <button class="chip" id="btnSleep" type="button">睡眠定时 · 关</button>
+        <button class="chip" id="btnRate" type="button">倍速 · 1x</button>
       </div>
     </div>
   </div>
@@ -651,6 +685,7 @@
     <button class="ctrl-btn skip" id="lyrNext" aria-label="下一首"></button>
   </div>
 </div>
+<div class="aurora" aria-hidden="true"><i></i><i></i><i></i></div>
 <div class="petal-field" aria-hidden="true"><span class="petal" style="left:6%;animation-delay:0.0s;animation-duration:14.0s"></span><span class="petal" style="left:19%;animation-delay:5.0s;animation-duration:17.0s"></span><span class="petal" style="left:33%;animation-delay:9.0s;animation-duration:15.0s"></span><span class="petal" style="left:47%;animation-delay:2.0s;animation-duration:18.0s"></span><span class="petal" style="left:61%;animation-delay:7.0s;animation-duration:16.0s"></span><span class="petal" style="left:75%;animation-delay:11.0s;animation-duration:19.0s"></span><span class="petal" style="left:88%;animation-delay:4.0s;animation-duration:15.0s"></span><span class="ash" style="left:12%;animation-delay:3.0s;animation-duration:16.0s"></span><span class="ash" style="left:40%;animation-delay:8.0s;animation-duration:19.0s"></span><span class="ash" style="left:68%;animation-delay:1.0s;animation-duration:17.0s"></span><span class="ash" style="left:94%;animation-delay:10.0s;animation-duration:18.0s"></span></div>
 <div class="rose-light" id="roseLight" hidden>
   <img id="roseLightImg" alt="">
@@ -775,7 +810,7 @@
   let isPlaying = false, isSrcMode = false;
   let simElapsed = 0, simDur = 0, simTimer = null;
   let audioCtx = null, analyser = null, vizData = null, ctxHooked = false;
-  const playbackRate = 1;
+  let playbackRate = LS.get('rate', 1); if (![0.75,1,1.25,1.5,2].includes(playbackRate)) playbackRate = 1;
   let pendingSeek = 0, seeking = false, lastSave = 0;
   let mode = LS.get('mode', 'order');
   let shuffleHist = [];
@@ -910,6 +945,7 @@
     lyrCurEl = el || null;
     if (!el) return;
     el.classList.add('cur');
+    Array.from(lyrList.children).forEach((n, i) => { const d = Math.abs(i - lyIdx); n.style.filter = d ? 'blur(' + Math.min(d * 0.7, 3.5).toFixed(1) + 'px)' : ''; n.style.opacity = d ? Math.max(0.18, 0.62 - d * 0.1) : 1; });
     lyrList.scrollTo({ top: el.offsetTop - lyrList.clientHeight / 2 + el.offsetHeight / 2, behavior: smooth ? 'smooth' : 'auto' });
   }
   function closeLyrics(){ lyrFull.hidden = true; document.body.style.overflow = ''; }
@@ -962,7 +998,7 @@
     vizRAF = 0;
     const W = vizC.width, H = vizC.height, d = window.devicePixelRatio || 1;
     vctx.clearRect(0, 0, W, H);
-    let alive = false;
+    let alive = false, sum = 0;
     const gap = W / BARS, lw = Math.max(1, 1.5 * d);
     vctx.fillStyle = vizColor;
     for (let i = 0; i < BARS; i++) {
@@ -976,12 +1012,13 @@
         }
       }
       levels[i] += (target - levels[i]) * (target > levels[i] ? 0.5 : 0.12);
-      if (levels[i] > 0.01) alive = true;
+      if (levels[i] > 0.01) alive = true; sum += levels[i];
       const h = Math.max(2 * d, levels[i] * H), x = i * gap + gap / 2;
       vctx.globalAlpha = 0.3 + 0.7 * levels[i];
       vctx.fillRect(x - lw / 2, (H - h) / 2, lw, h);
     }
     vctx.globalAlpha = 1;
+    stage.style.setProperty('--beat', (sum / BARS).toFixed(3));
     if (isPlaying || alive) vizRAF = requestAnimationFrame(vizFrame);
   }
   function startViz(){ if (!vizRAF) vizRAF = requestAnimationFrame(vizFrame); }
@@ -1040,7 +1077,7 @@
   labelImg.addEventListener('error', () => { labelImg.hidden = true; vinyl.classList.remove('has-cover'); });
 
   function refreshPlayUI(){
-    vinyl.classList.toggle('spinning', isPlaying);
+    vinyl.classList.toggle('spinning', isPlaying); document.body.classList.toggle('playing', isPlaying);
     tonearm.classList.toggle('down', isPlaying);
     btnPlay.innerHTML = isPlaying ? ICON_PAUSE : ICON_PLAY;
     lyrPlay.innerHTML = isPlaying ? ICON_PAUSE : ICON_PLAY;
@@ -1204,6 +1241,52 @@
   }
   window.addEventListener('pagehide', saveState);
   document.addEventListener('visibilitychange', () => { if (document.hidden) saveState(); });
+
+  document.addEventListener('pointermove', e => {
+    const c = e.target.closest && e.target.closest('.coll'); if (!c) return;
+    const r = c.getBoundingClientRect();
+    c.style.setProperty('--mx', (e.clientX - r.left) + 'px'); c.style.setProperty('--my', (e.clientY - r.top) + 'px');
+  });
+
+  /* ================= 睡眠定时 / 倍速 ================= */
+  const SLEEP_OPTS = [0, 15, 30, 60], RATES = [0.75, 1, 1.25, 1.5, 2];
+  const btnSleep = $('btnSleep'), btnRate = $('btnRate');
+  let sleepIdx = 0, sleepEnd = 0, sleepTick = 0;
+  function renderSleep(){
+    if (!sleepEnd) { btnSleep.textContent = '睡眠定时 · 关'; btnSleep.classList.remove('on'); return; }
+    btnSleep.textContent = '睡眠定时 · 剩 ' + Math.max(1, Math.ceil((sleepEnd - Date.now()) / 60000)) + ' 分';
+    btnSleep.classList.add('on');
+  }
+  function fadeOutPause(){
+    const v0 = player.volume; let k = 0;
+    const f = setInterval(() => {
+      k++; player.volume = Math.max(0, v0 * (1 - k / 12));
+      if (k >= 12) { clearInterval(f); if (isPlaying) togglePlay(); player.volume = v0; toast('睡眠定时已暂停，晚安'); }
+    }, 250);
+  }
+  btnSleep.addEventListener('click', () => {
+    sleepIdx = (sleepIdx + 1) % SLEEP_OPTS.length;
+    clearInterval(sleepTick); sleepTick = 0;
+    const m = SLEEP_OPTS[sleepIdx];
+    sleepEnd = m ? Date.now() + m * 60000 : 0;
+    if (m) {
+      sleepTick = setInterval(() => {
+        if (Date.now() >= sleepEnd) { clearInterval(sleepTick); sleepTick = 0; sleepEnd = 0; sleepIdx = 0; fadeOutPause(); }
+        renderSleep();
+      }, 1000);
+    }
+    toast(m ? m + ' 分钟后自动暂停' : '已关闭睡眠定时');
+    renderSleep();
+  });
+  function applyRate(){
+    player.defaultPlaybackRate = playbackRate; player.playbackRate = playbackRate;
+    btnRate.textContent = '倍速 · ' + playbackRate + 'x'; btnRate.classList.toggle('on', playbackRate !== 1);
+  }
+  btnRate.addEventListener('click', () => {
+    playbackRate = RATES[(RATES.indexOf(playbackRate) + 1) % RATES.length];
+    LS.set('rate', playbackRate); applyRate(); toast('播放速度 ' + playbackRate + 'x');
+  });
+  applyRate();
 
   /* ================= 播放模式 ================= */
   const MODES = ['order', 'one', 'shuffle'];
@@ -1372,7 +1455,9 @@
     /* ---- 通用专区 ---- */
     function zone(cfg){
       const key = cfg.key, pid = cfg.pid;
-      let order = [], photoURL = '', photos = [];
+      let order = [], photoURL = '', photos = (cfg.gallery || []).map((src, i) => ({
+        id: 'static-' + key + '-' + (i + 1), t: i + 1, url: src, isStatic: true
+      }));
       panelDefs[pid] = { get: () => order, set: v => { order = v; LS.set(key + 'Order', v); }, sortable: true, empty: '还没有歌曲，点上方「＋ 添加歌曲」' };
       view[pid] = { q: '', sort: 'default' };
 
@@ -1413,7 +1498,10 @@
       const light = E('Light'), lImg = E('LightImg'); let li = 0;
       function openLight(i){
         if (!photos.length) { light.hidden = true; return; }
-        li = (i + photos.length) % photos.length; lImg.src = photos[li].url; light.hidden = false;
+        li = (i + photos.length) % photos.length;
+        lImg.src = photos[li].url;
+        E('LightDel').hidden = !!photos[li].isStatic;
+        light.hidden = false;
       }
       gallery.addEventListener('click', e => { const t = e.target.closest('img'); if (t) openLight(photos.findIndex(p => p.id === t.dataset.id)); });
       light.addEventListener('click', e => { if (e.target === light) light.hidden = true; });
@@ -1422,7 +1510,9 @@
       E('LightNext').onclick = () => openLight(li + 1);
       E('LightDel').onclick = () => {
         if (!confirm('删除这张照片？')) return;
-        const p = photos[li]; photos.splice(li, 1); URL.revokeObjectURL(p.url);
+        const p = photos[li];
+        if (p.isStatic) { toast('这张是 GitHub 图片，请在仓库中删除对应文件'); return; }
+        photos.splice(li, 1); URL.revokeObjectURL(p.url);
         tx('readwrite', s => s.delete(p.id)); refreshPhotos(); openLight(Math.min(li, photos.length - 1));
       };
 
@@ -1515,8 +1605,16 @@
         if (!curId) restoreState();
       });
     }
-    zone({ key: 'rose',  pid: 'p3', prefix: 'r', name: '朴彩英', artist: '朴彩英', pron: '她', mine: '我想对她说' });
-    zone({ key: 'loren', pid: 'p4', prefix: 'l', name: '李圣俊', artist: 'LØREN', pron: '他', mine: '我想对他说', theme: 'in-loren' });
+    zone({
+      key: 'rose', pid: 'p3', prefix: 'r', name: '朴彩英', artist: '朴彩英',
+      pron: '她', mine: '我想对她说',
+      gallery: Array.from({length: 8}, (_, i) => `images/rose/rose-${String(i + 1).padStart(2, '0')}.jpg`)
+    });
+    zone({
+      key: 'loren', pid: 'p4', prefix: 'l', name: '李圣俊', artist: 'LØREN',
+      pron: '他', mine: '我想对他说', theme: 'in-loren',
+      gallery: Array.from({length: 8}, (_, i) => `images/loren/loren-${String(i + 1).padStart(2, '0')}.jpg`)
+    });
   })();
 
   /* ================= 搜索 / 排序 / 随便听听 ================= */
