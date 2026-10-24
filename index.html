@@ -5,10 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <title>Rosé × LØREN · 音乐馆</title>
 <script>try{var t=localStorage.getItem('theme');if(!t){var h=new Date().getHours();t=(h>=19||h<6)?'dark':'light'}document.documentElement.dataset.theme=t}catch(e){}</script>
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,200..500;1,9..144,200..400&family=Inter:wght@300;400;500&family=JetBrains+Mono:wght@300;400&display=swap" media="print" onload="this.media='all'">
-<noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,200..500;1,9..144,200..400&family=Inter:wght@300;400;500&family=JetBrains+Mono:wght@300;400&display=swap"></noscript>
+<noscript></noscript>
 <style>
   :root{
     --bg:#f6f5f2; --ink:#14130f; --soft:#4a4842; --mute:#9b988f; --line:rgba(20,19,15,.08);
@@ -26,7 +23,7 @@
       radial-gradient(60% 50% at 50% 100%, rgba(255,255,255,.9) 0%, transparent 70%),
       var(--bg);
     background-attachment:fixed;
-    animation:fade 1.2s cubic-bezier(.25,.1,.25,1) both;
+    
   }
   @keyframes fade{ from{opacity:0} to{opacity:1} }
   .wrap{ max-width:860px; margin:0 auto; padding:0 28px; }
@@ -686,6 +683,34 @@
     .stage::after{display:none;}
     .hero-title{font-size:clamp(2rem,9vw,2.7rem);}
   }
+
+/* ===== 整理层：性能 + 统一配色（放在最后，覆盖前面 4 层叠加的主题） ===== */
+body{ animation:none !important; background-attachment:scroll; }
+/* 1) 去掉常驻的大面积模糊动画 */
+.aurora{ display:none !important; }
+.lyr-full::before{ display:none !important; }
+.coll-panel,.coll-grid,.coll-panel .panel-head,.coll-panel .track,header.hero,#collections > .section-head{ animation:none !important; filter:none !important; }
+@keyframes reveal{ from{ opacity:0 } to{ opacity:1 } }
+/* 2) 玻璃模糊只留舞台一处，其余用纯色 */
+.quick-fab,.shortcut-tip,.coll,.track{ -webkit-backdrop-filter:none !important; backdrop-filter:none !important; }
+.stage{ -webkit-backdrop-filter:blur(10px); backdrop-filter:blur(10px); }
+/* 3) 花瓣/灰烬：只留 4 颗，且没在播放时暂停 */
+.petal-field .petal:nth-child(n+5), .petal-field .ash:nth-child(n+5){ display:none; }
+body:not(.playing) .petal-field > *, body:not(.playing) .rose-hero > .petal, body:not(.playing) .rose-hero > .ash{ animation-play-state:paused !important; }
+/* 4) 统一配色：中性暖白底 + 一个主色（Rosé 玫瑰粉），LØREN 区用雾蓝 */
+:root{ --bg:#faf7f6; --ink:#2a2226; --soft:#6a5d63; --mute:#a3979c; --line:rgba(42,34,38,.09);
+  --gold:#c4577f; --gold-l:#f1c4d3; --glass:rgba(255,255,255,.82); --card:#fff; }
+html[data-theme="dark"]{ --bg:#121014; --ink:#f4eef1; --soft:#cdbfc6; --mute:#8e8189; --line:rgba(255,255,255,.10);
+  --gold:#e58aa9; --gold-l:#f3c4d4; --glass:rgba(30,25,32,.82); --card:#1c171e; }
+body.in-loren{ --gold:#6f7fb8; --gold-l:#c9d0ea; --soft:#555c78; --mute:#8b92b0; --ink:#1f2338; }
+html[data-theme="dark"] body.in-loren{ --gold:#8e9bd0; --gold-l:#c4cbea; --soft:#c5c9de; --ink:#eef0f8; }
+body{ background:var(--bg) !important; }
+.hero-title .ln{ background-image:linear-gradient(90deg,#7683b8,#a9b3e0) !important; animation:none !important; }
+.hero-title em{ background:none !important; -webkit-text-fill-color:var(--gold); color:var(--gold); animation:none !important; }
+.stage{ background:var(--glass) !important; border:1px solid var(--line) !important; outline:none !important; box-shadow:0 18px 40px -26px rgba(42,34,38,.28) !important; }
+.label{ background:linear-gradient(145deg,var(--gold-l),var(--gold)) !important; }
+/* 5) 照片区：没图时不占空位，有图时统一比例 */
+.rose-gallery img{ aspect-ratio:1/1; object-fit:cover; background:var(--line); }
 </style>
 </head>
 <body>
@@ -908,7 +933,7 @@
   <strong>F</strong> 收藏当前歌曲<br>
   <strong>/</strong> 聚焦搜索　<strong>Esc</strong> 关闭提示
 </div>
-<audio id="player" preload="auto"></audio>
+<audio id="player" preload="metadata"></audio>
 
 <script>
   /* ================= 基础工具 ================= */
@@ -1326,7 +1351,7 @@
     };
     next();
   }
-  window.addEventListener('load', () => setTimeout(probeDurations, 600));
+  /* probeDurations 已停用：播放时 onMeta 会自动校正时长 */
   function onTime(){
     if (seeking || pendingSeek > 0) return;
     showPos(player.currentTime);
@@ -1660,6 +1685,8 @@
       let order = [], photoURL = '', photos = (cfg.gallery || []).map((src, i) => ({
         id: 'static-' + key + '-' + (i + 1), t: i + 1, url: src, isStatic: true
       }));
+      let staticChecked = false;
+      const staticProbe = Promise.all(photos.map(p => new Promise(r => { const im = new Image(); im.onload = () => r(true); im.onerror = () => r(false); im.src = p.url; }))).then(ok => { const bad = new Set(photos.filter((p, i) => !ok[i]).map(p => p.id)); for (let j = photos.length - 1; j >= 0; j--) if (bad.has(photos[j].id)) photos.splice(j, 1); staticChecked = true; });
       panelDefs[pid] = { get: () => order, set: v => { order = v; LS.set(key + 'Order', v); }, sortable: true, empty: '还没有歌曲，点上方「＋ 添加歌曲」' };
       view[pid] = { q: '', sort: 'default' };
 
@@ -1683,7 +1710,7 @@
       showText();
 
       function refreshPhotos(){
-        gallery.replaceChildren(...photos.map(p => { const i = document.createElement('img'); i.src = p.url; i.alt = ''; i.dataset.id = p.id; return i; }));
+        gallery.replaceChildren(...photos.map(p => { const i = document.createElement('img'); i.loading = 'lazy'; i.decoding = 'async'; i.src = p.url; i.alt = ''; i.dataset.id = p.id; return i; }));
         gallery.hidden = !photos.length;
         photoURL = photos.length ? photos[0].url : '';
         hero.style.setProperty('--hero-img', photoURL ? 'url(' + photoURL + ')' : 'none');
@@ -1797,6 +1824,7 @@
       }
 
       idb.then(async () => {
+        await staticProbe;
         const recs = (await tx('readonly', s => s.getAll())) || [];
         recs.filter(isPhoto).sort((a, b) => (a.t || 0) - (b.t || 0)).forEach(pushPhoto);
         refreshPhotos();
